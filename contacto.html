@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto</title>
+</head>
+<body>
+    <main>
+        <section id="Contacto">
+            <h2> 📞 Contacto y Pedidos </h2>
+            <p>3026555458 📱</p>
+            <p>Realiza tu pedido por medio de WhatsApp o llena el siguiente formulario:</p>
+            
+            <form>
+                <label for="Nombre">Tu Nombre completo:</label>
+                <input type="text" name="Nombre" id="Nombre" required>
+                <br><br>
+
+                <label for="Email">Correo Electronico</label>
+                <input type="email" name="email" id="email" required>
+                <br><br>
+
+                <label for="telefono">Telefono o Celular</label>
+                <input type="tel" name="telefono" id="telefono" pattern="[0-11]{11}" required>
+                <br><br>
+
+                <label for="direccion"> Direccion de entrega:</label>
+                <input type="text" name="direccion" id="direccion" required>
+                <br><br>
+
+                <label for="horario">Horario preferido de entrega:</label>
+                    <select id="horario" name="horario required">
+                    <option value="">Selecciona...</selecciona></option>
+                    <option value="morning">Mañana (8:00 AM - 12:00 PM)</option>
+                    <option value="afternoon">Tarde (12:00 PM - 6:00 PM)</option>
+                    <option value="evening">Noche (6:00 PM - 9:00 PM)</option>
+                    </select>
+                    <br><br>
+                    
+
+
+            </form>
+
+
+        </section>
+    </main>
+    
+</body>
+</html>
