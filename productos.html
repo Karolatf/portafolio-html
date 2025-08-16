@@ -1,11 +1,147 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Productos</title>
 </head>
 <body>
+    <section id="productos">
+        <h2> Catalogo de Productos</h2>
+        <p>Nuestros productos mas vendidos con precios especiales online:</p>
+
+        <table border="1">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Manzanas Rojas (1kg)</td>
+                <td>Manzanas frescas de temporada</td>
+                <td>17,85</td>
+                <td>Disponible</td>
+                <td><button onclick="agregarCarrito('Manzanas Rojas (1kg)', 17,85)">Agregar</button></td>
+            </tr>
+            <tr>
+                <td>Leche Entera (1L)</td>
+                <td>Leche fresca pasteurizada</td>
+                <td>6,5</td>
+                <td>Disponible</td>
+                <td><button onclick="agregarCarrito('Leche Entera (1L)', 6,5)">Agregar</button></td>
+            </tr>
+            <tr>
+                <td>Pan Integral</td>
+                <td>Pan casero horneado diariamente</td>
+                <td>9,5</td>
+                <td>Disponible</td>
+                <td><button onclick="agregarCarrito('Pan Integral', 9,5)">Agregar</button></td>
+            </tr>
+            <tr>
+                <td>Carne de Res (500g)</td>
+                <td>Corte premium para asado</td>
+                <td>34,0</td>
+                <td>Limitado</td>
+                <td><button onclick="agregarCarrito('Carne de Res (500g)',34,0)">Agregar</button></td>
+            </tr>
+            <tr>
+                <td>Queso Manchego</td>
+                <td>Queso curado artesanal</td>
+                <td>26,1</td>
+                <td>Disponible</td>
+                <td><button onclick="agregarCarrito('Queso Manchego', 26,1)">Agregar</button></td>
+            </tr>
+            <tr>
+                <td>Zanahorias (1kg)</td>
+                <td>Zanahorias orgánicas</td>
+                <td>2,4</td>
+                <td>Disponible</td>
+                <td><button onclick="agregarCarrito('Zanahorias (1kg)', 2,4)">Agregar</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Mi Carrito de Compras</h3>
+    <ul id="items-carrito">
+        <li>Tu carrito está vacío</li>
+    </ul>
+    <p>Total: $<span id="total-carrito">0.00</span></p>
+    <button onclick="vaciarCarrito()">Vaciar Carrito</button>
+    <button onclick="finalizarCompra()">Finalizar Compra</button>
+</section>
+            
+                <script>
+    let carritoItems = [];
+    let totalCarrito = 0;
+
+    function agregarCarrito(producto, precio) {
+        carritoItems.push({
+            nombre: producto,
+            precio: precio
+        });
+        
+        totalCarrito += precio;
+        actualizarCarrito();
+        
+        alert(producto + ' añadido al carrito');
+    }
+
+    function actualizarCarrito() {
+        const listaCarrito = document.getElementById('items-carrito');
+        const totalElement = document.getElementById('total-carrito');
+        
+        if (carritoItems.length === 0) {
+            listaCarrito.innerHTML = '<li>Tu carrito está vacío</li>';
+            totalCarrito = 0;
+        } else {
+            listaCarrito.innerHTML = '';
+            carritoItems.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = item.nombre + ' - $' + item.precio.toFixed(2) + 
+                    ' <button onclick="eliminarItem(' + index + ')">Eliminar</button>';
+                listaCarrito.appendChild(li);
+            });
+        }
+        
+        totalElement.textContent = totalCarrito.toFixed(2);
+    }
+
+    function eliminarItem(index) {
+        totalCarrito -= carritoItems[index].precio;
+        carritoItems.splice(index, 1);
+        actualizarCarrito();
+    }
+
+    function vaciarCarrito() {
+        carritoItems = [];
+        totalCarrito = 0;
+        actualizarCarrito();
+        alert('Carrito vaciado');
+    }
+
+    function finalizarCompra() {
+        if (carritoItems.length === 0) {
+            alert('El carrito está vacío');
+            return;
+        }
+        
+        let mensaje = 'Resumen de compra:\n\n';
+        carritoItems.forEach(item => {
+            mensaje += item.nombre + ': $' + item.precio.toFixed(2) + '\n';
+        });
+        mensaje += '\nTotal: $' + totalCarrito.toFixed(2);
+        
+        alert(mensaje);
+    }
+</script>
+           
+
+   
     
 </body>
 </html>
